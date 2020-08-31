@@ -183,34 +183,28 @@ SELECT ID FROM Customers INNER
 JOIN Orders ON Customers.ID = Orders.ID
 The point of INNER JOIN, in this case, is to select records in the Customers table which have a matching customer ID values in the Orders table and return only those records. Of course, there are many types of JOIN, such as FULL, SELF, and LEFT, but for now, let’s keep things interesting and move on to more diverse types of SQL queries.
 
-27. Doubling the Power with UNION
+# Doubling the Power with UNION
 We can combine the results of two SQL queries examples into one naturally with the UNION keyword. Suppose we want to create a new table by combining the Customer_name and phone from Customers with a list of that customer’s recent orders so that we can look for patterns and perhaps suggest future purchases. Here is a quick way to accomplish the task:
 
-1
-2
 SELECT phone FROM Customers 
 UNION SELECT item FROM Orders
 The UNION keyword makes it possible to combine JOINS and other criteria to achieve very powerful new table generation potential.
 
-28. Making Column Labels More Friendly
+# Making Column Labels More Friendly
 Aliasing column labels give us the convenience of renaming a column label to something more readable. There is a tradeoff when naming columns to make them succinct results in reduced readability in subsequent daily use. In our Orders table, the item column contains the description of purchased products. Let’s see how to alias the item column to temporarily rename it for greater user-friendliness:
 
-1
 SELECT Item AS item_description FROM Orders
 
-29. Always and Everywhere!
+# Always and Everywhere!
 Wouldn’t it be great if there were a set of conditions you could depend on every time? The SQL queries using ANY and ALL can make this ideal a reality! Let’s look at how the ALL keyword is used to include records only when a set of conditions is true for ALL records. In the following example, we will return records from the Orders table where the idea is to get a list of high volume orders for a given item, in this case for customers who ordered more than 50 of the product:
 
-1
-2
-3
-4
+
 SELECT Item FROM Orders 
 WHERE id = ALL
 (SELECT ID FROM Orders
 WHERE quantity > 50)
 
-30. Writing Developer Friendly SQL
+# Writing Developer Friendly SQL
 An often overlooked but very important element of SQL scripting is adding comments to a script of queries to explain what it’s doing for the benefit of future developers who may need to revise and update your SQL queries.
 
 A SQL script is a collection of SQL elements and commands accumulated as a file in SQL Scripts. This script file can include many SQL commands or PL/SQL codes. One can utilize SQL Scripts to build, edit, design, execute, and delete files.
@@ -250,13 +244,13 @@ WHERE id
 ALL = (SELECT ID FROM Orders
 WHERE quantity > 25)
 
-31.  SQL queries for Database Management
+#  SQL queries for Database Management
 So far we have explored SQL query examples for querying tables and combining records from multiple queries. Now it’s time to take a step upward and look at the database on a structural level. Let’s start with the easiest SQL statement of all which creates a new database. Here, we are going to create the DB as a container for our Customers and Orders tables used in the previous ten examples above:
 
 1
 CREATE DATABASE AllSales
 
-32. Adding Tables to Our New DB
+# Adding Tables to Our New DB
 Next, we will actually add the Customers table which we’ve been using in previous examples, and then add some of the column labels which we are already familiar with:
 
 1
@@ -273,7 +267,7 @@ Phone varchar(20),
 );
 Although most databases are created using a UI such as Access or OpenOffice, it is important to know how to create and delete databases and tables programmatically via code with SQL statements. This is especially so when installing a new web app and the UI asks new users to enter names for DBs to be added during installation.
 
-33. Modifying and Deleting Tables with SQL
+# Modifying and Deleting Tables with SQL
 The ALTER statement is used to modify or change the meaning of a table. In the case of the relational tables with columns, ALTER statement is used to update the table to the new or modified rules or definition. Alter belongs to the DDL category of Commands. Data definition language can be described as a pattern for commands through which data structures are represented.
 
 Imagine that you decide to send a birthday card to your customers to show your appreciation for their business, and so you want to add a birthday field to the Customers table. In these SQL examples, you see how easy it is to modify existing tables with the ALTER statement:
@@ -285,7 +279,7 @@ If a table becomes corrupted with bad data you can quickly delete it like this:
 1
 DROP TABLE table_name
 
-34. The Key to Successful Indexing
+# The Key to Successful Indexing
 An index is a schema element that includes a record for each content that arrives in the indexed column of the database table or cluster and gives a high-speed path to rows. There are many types of indexes such as Bitmap indexes, Partitioned indexes, Function-based indexes, and Domain indexes.
 
 Accurate indexing requires that the Primary Key column contains only unique values for this purpose. This guarantees that JOIN statements will maintain integrity and produce valid matches. Let’s create our Customers table again and establish the ID column as the Primary Key:
@@ -305,7 +299,7 @@ We can extend the functionality of the Primary Key so that it automatically incr
 1
 ID int NOT NULL AUTO_INCREMENT
 
-35. Advanced Concepts For Improving Performance
+# Advanced Concepts For Improving Performance
 Whenever practical, is always better to write the column name list into a SELECT statement rather than using the * delimiter as a wildcard to select all columns. SQL Server has to do a search and replace operation to find all the columns in your table and write them into the statement for you (every time the SELECT is executed). For example:
 
 1
@@ -318,7 +312,7 @@ SELECT Name, Birthday, Phone,
 Address, Zip FROM Customers
 Performance pitfalls can be avoided in many ways. For example, avoid the time sinkhole of forcing SQL Server to check the system/master database every time by using only a stored procedure name, and never prefix it with SP_. Also setting NOCOUNT ON reduces the time required for SQL Server to count rows affected by INSERT, DELETE, and other commands. Using INNER JOIN with a condition is much faster than using WHERE clauses with conditions. We advise developers to learn SQL server queries to an advanced level for this purpose. For production purposes, these tips may be crucial to adequate performance. Notice that our tutorial examples tend to favor the INNER JOIN.
 
-36. Conditional Subquery Results
+# Conditional Subquery Results
 The SQL operator EXISTS tests for the existence of records in a subquery and returns a value TRUE if a subquery returns one or more records. Have a look at this query with a subquery condition:
 
 1
@@ -329,7 +323,7 @@ SELECT Name FROM Customers WHERE EXISTS
 WHERE Customers.ID = Orders.ID AND Price < 50)
 In this example above, the SELECT returns a value of TRUE when a customer has orders valued at less than $50.
 
-37. Copying Selections from Table to Table
+# Copying Selections from Table to Table
 There are a hundred and one uses for this SQL tool. Suppose you want to archive your yearly Orders table into a larger archive table. This next example shows how to do it.
 
 1
@@ -340,7 +334,7 @@ SELECT * FROM Orders
 WHERE Date<=1/1/2018
 This example will add any records from the year 2018 to the archive.
 
-38. Catching NULL Results
+# Catching NULL Results
 The NULL is the terminology applied to describe an absent value. Null does not mean zero. A NULL value in a column of a table is a condition in a domain that seems to be empty. A column with a NULL value is a domain with absent value. It is essential to recognize that a NULL value is distinct from a zero.
 
 In cases where NULL values are allowed in a field, calculations on those values will produce NULL results as well. This can be avoided by the use of the IFNULL operator. In this next example, a value of zero is returned rather than a value of NULL when the calculation encounters a field with a NULL value:
@@ -352,7 +346,7 @@ SELECT Item, Price *
 (QtyInStock + IFNULL(QtyOnOrder, 0)) 
 FROM Orders
 
-39. HAVING can be Relieving!
+# HAVING can be Relieving!
 The problem was that the SQL WHERE clause could not operate on aggregate functions. The problem was solved by using the HAVING clause. As an example, this next query fetches a list of customers by the region where there is at least one customer per region:
 
 1
@@ -364,7 +358,7 @@ FROM Customers
 GROUP BY Region
 HAVING COUNT(ID) > 0;
 
-40. Tie things up with Strings!
+# Tie things up with Strings!
 Let’s have a look at processing the contents of field data using functions. Substring is probably the most valuable of all built-in functions. It gives you some of the power of Regex, but it’s not so complicated as Regex. Suppose you want to find the substring left of the dots in a web address. Here’s how to do it with an SQL Select query:
 
 1
@@ -381,7 +375,7 @@ Check this video to learn about every SQL query:
 
 .. and 20 more useful SQL Queries examples!!
 
-41. Use COALESCE to return the first non-null expression
+# Use COALESCE to return the first non-null expression
 The SQL Coalesce is used to manage the NULL values of the database. In this method, the NULL values are substituted with the user-defined value. The SQL Coalesce function assesses the parameters in series and always delivers first non-null value from the specified argument record.
 
 Syntax
@@ -390,7 +384,7 @@ SELECT COALESCE(NULL,NULL,'ByteScout',NULL,'Byte')
 Output
 ByteScout
 
-42. Use Convert to transform any value into a particular datatype
+# Use Convert to transform any value into a particular datatype
 This is used to convert a value into a defined datatype. For example, if you want to convert a particular value into int datatype then convert function can be used to achieve this. For example,
 
 Syntax
@@ -399,7 +393,7 @@ SELECT CONVERT(int, 27.64)
 Output
 27
 
-43. DENSE_RANK()Analytical query
+# DENSE_RANK()Analytical query
 It is an analytic query that computes the rank of a row in an arranged collection of rows. An output rank is a number starting from 1. DENSE_RANK is one of the most important analytic SQL queries. It returns rank preferences as sequential numbers. It does not jump rank in event of relations. For example, the following query will give the sequential ranks to the employee.
 
 1
@@ -447,7 +441,7 @@ ENO  DNO SALARY RANKING
 7493  30 1500   4
 7698  30 2850   5
 
-44. Query_partition_clause
+# Query_partition_clause
 The query_partition_clause breaks the output set into distributions, or collections, of data. The development of the analytic query is limited to the confines forced by these partitions, related to the process a GROUP BY clause modifies the performance of an aggregate function. If the query_partition_clause is eliminated, the entire output collection is interpreted as a separate partition.
 
 The following query applies an OVER clause, so the average displayed is based on all the records of the output set.
@@ -493,7 +487,7 @@ EO  DNO SALARY AVG_SAL
 7903 20 3100 2173.21428
 7935 10 1400 2173.21428
 
-45. Finding the last five records from the table
+# Finding the last five records from the table
 Now, if you want to fetch the last eight records from the table then it is always difficult to get such data if your table contains huge information. For example, you want to get the last 8 records fr om the employee table then you can use rownum and a union clause. The rownum is temporary in SQL.
 
 For example,
@@ -506,7 +500,7 @@ union
 select * from (Select * from Employee A order by rowid desc) where rownum <=8;
 The above SQL query will give you the last eight records from the employee table where rownum is a pseudo column. It indexes the data in an output set.
 
-46. LAG
+# LAG
 The LAG is applied to get data from a prior row. This is an analytical function. For example, the following query gives the salary from the prior row to compute the difference between the salary of the current row and that of the prior row. In this query, the ORDER BY of the LAG function is applied. The default is 1 if you do not define offset. The arbitrary default condition is given if the offset moves past the range of the window. The default is null if you do not define default.
 
 Syntax
@@ -558,7 +552,7 @@ DTNO ENO ENAME JOB SAL SAL_PREV
 30 7494 ALLEN SALESMAN 1600 1500
 30 7695 GLEN MANAGER 2850 1600
 
-47. LEAD
+# LEAD
 The LEAD is also an analytical query that is applied to get data from rows extra down the output set. The following query gives the salary from the next row to compute the deviation between the salary of the prevailing row and the subsequent row. The default is 1 if you do not define offset. The arbitrary default condition is given if the offset moves past the range of the window. The default is null if you do not define default.
 
 1
@@ -610,7 +604,7 @@ ENO EMPNAME JOB SALARY SALARY_NEXT SALARY_DIFF
 7902 FORD ANALYST 3000 5000 2000
 7839 KING PRESIDENT 5000 0 -5000
 
-48. PERCENT_RANK
+# PERCENT_RANK
 The PERCENT_RANK analytic query. The ORDER BY clause is necessary for this query. Excluding a partitioning clause from the OVER clause determines the entire output set is interpreted as a separate partition. The first row of the standardized set is indicated 0 and the last row of the set are indicated 1. For example, the SQL query example gives the following output.
 
 Syntax
@@ -636,7 +630,7 @@ PRDID        SUM(AMOUNT)  PERCENT_RANK
           1    22623.5            0
           2   223927.08           1
 
-49. MIN
+# MIN
 Utilizing a blank OVER clause converts the MIN into an analytic function. This is also an analytical query. In this, the entire result set is interpreted as a single partition. It gives you the minimum salary for all employees and their original data. For example, the following query is displaying the use of MIN in the Select query.
 
 1
@@ -686,7 +680,7 @@ FROM   employee;
       7698 BLAKE              30       2850             950
       7654 MARTIN             30       1250             950
 
-50. MAX
+# MAX
 Using a blank row OVER clause converts the MAX into an analytic function. The lack of a partitioning clause indicates the entire output set is interpreted as a separate partition. This gives the maximum salary for all employees and their original data. For example, the following query displays the use of MAX in the select query.
 
 1
@@ -736,7 +730,7 @@ FROM   employee;
       7902 FORD               20       3000       3000
       7934 MILLER             10       1300       3000
 
-51. Top- N queries
+# Top- N queries
 Top-N queries give a process for restricting the number of rows delivered from organized assemblages of data. They are remarkably beneficial when users want to give the top or bottom number of rows from a table.
 
 For example, the following query gives the 20 rows with 10 different values:
@@ -804,7 +798,7 @@ PRICE
  
 20 rows selected.
 
-52. CORR Analytic Query
+# CORR Analytic Query
 The CORR analytic function is utilized to determine the coefficient of correlation. This query is also used to calculate the Pearson correlation coefficient. The function calculates the following on rows in the table with no null values. This query always returns the values between +1 and -1, which describe the following:
 
 Syntax: CORR(exp1, exp2) [ OVER (analytic_clause) ]
@@ -825,7 +819,7 @@ SELECT empid,
        CORR(SYSDATE - joiningdate, salary) OVER () AS my_corr_val
 FROM   employee;
 
-53. NTILE Analytic Query
+# NTILE Analytic Query
 The NTILE enables users to split a sequence set into a detailed number of relatively similar groups, or containers, rows sanctioning. If the number of rows in the collection is less than the number of containers defined, the number of containers will be decreased. The basic syntax is as displayed below:
 
 NTILE(exp) OVER ([ partition_clause ] order_by)
@@ -844,7 +838,7 @@ SELECT empid,
        NTILE(6) OVER (ORDER BY salary) AS container_no
 FROM   employee;
 
-54. VARIANCE, VAR_POP, and VAR_SAMP Query
+# VARIANCE, VAR_POP, and VAR_SAMP Query
 The VARIANCE, VAR_POP, and VAR_SAMP are aggregate functions. These are utilized to determine the variance, group variance, and sample variance of a collection of data individually. As aggregate queries or functions, they decrease the number of rows, therefore the expression “aggregate”. If the data isn’t arranged we change the total rows in the Employee table to a separate row with the aggregated values. For example, the following query is displaying the use of these functions:
 
 1
@@ -885,7 +879,7 @@ STDDEV_SALARY POP_SALARY SAMP_SALARY
 1193.50     1159.588      1193.603
 If there is more than one account after dropping nulls, the STDDEV function gives the result of the STDDEV_SAMP. Using an empty OVER clause converts the STDDEV query result into an analytic query. The absence of a partitioning indicates the entire output set is interpreted as a particular partition, so we accept the standard deviation of the salary and the primary data.
 
-56. Pattern Matching
+# Pattern Matching
 The pattern matching syntax adds various alternatives. Data must be treated precisely and in a proper form. The PARTITION BY and ORDER BY conditions of all SQL analytic queries is applied to split the data into accumulations and within each group. If no partitions are specified, it is considered the entire sequence set is one huge partition.
 
 For example,
@@ -909,7 +903,7 @@ DEFINE
   FLAT AS FLAT.products_sold = PREV(FLAT.products_sold),
   DOWN AS DOWN.products_sold < PREV(DOWN.products_sold)
 
-57. FIRST_VALUE
+# FIRST_VALUE
 The simplest way to get analytic functions is to begin by studying aggregate functions. An aggregate function collects or gathers data from numerous rows into a unique result row. For instance, users might apply the AVG function to get an average of all the salaries in the EMPLOYEE table. Let’s take a look at how First_Value can be used. The primary explanation for the FIRST_VALUE analytic function is displayed below.
 
 Syntax:
@@ -938,7 +932,7 @@ SELECT eno,
 FROM   employee;
 The above query will ignore null values.
 
-58. LAST_VALUE
+# LAST_VALUE
 The primary explanation for the LAST_VALUE analytic query or function is displayed below.
 
 1
@@ -964,7 +958,7 @@ SELECT eno,
          OVER (PARTITION BY dno ORDER BY salary) AS highest_salary_in_dept
 FROM   employee;
 
-59. Prediction
+# Prediction
 The design sample foretells the gender and age of clients who are most expected to adopt an agreement card (target = 1). The PREDICTION function takes the price matrix correlated with the design and applies for marital status, and house size as predictors. The syntax of the PREDICTION function can also apply a piece of arbitrary GROUPING information when getting a partitioned model.
 
 1
