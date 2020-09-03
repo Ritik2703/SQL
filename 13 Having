@@ -1,0 +1,52 @@
+# Having
+
+It allows us to filter after an aggregation has alreday taken place.
+
+select company, sum(sales)
+from finance
+where company != 'Google'
+group by company
+
+we have already seen we can filter before executing the group by, but what if we want to filter based on sum(sales)
+
+we can't use where to filter based off of aggregate results, because those happen after a where is executed
+
+Solution is having
+
+having allows us to use the aggregate result as a filter along with a group by
+
+example
+
+select company, sum(sales)
+from finance
+where company != 'Google'
+group by company
+having sum(sales) >  1000
+
+
+select customer_id, sum(amount) from payment
+group by customer_id
+having sum(amount) > 100
+
+select store_id, count(*) from customer
+group by store_id
+having count(*) > 300
+
+
+************************************
+
+# Challenge
+
+Q1 customer having 40 or more transaction got platinum .. what customer_ids are eligible?
+
+select customer_id, count(amount) from payment
+group by customer_id
+having count(amount) >= 40;
+
+
+Q2 customer ids of cust who have spent more than $100 in payment transactions with our staff_id member 2?
+
+select customer_id, sum(amount) from payment
+where staff_id = 2
+group by customer_id
+having sum(amount)> 100 
