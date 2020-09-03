@@ -1,0 +1,28 @@
+# what is Join?
+
+Join allows us to combine multiple tables together
+
+
+# an inner join will reslt with the set of records that match in both tables.
+
+Syntax
+
+select * from tableA
+inner join tableB
+on tableA.col_match = tableB.col_match
+
+simple join also means inner join
+
+in inner join table order won't matter.
+
+# Example-
+
+select * from payment
+inner join customer
+on payment.customer_id= customer.customer_id
+
+select payment_id, payment.customer_id, first_name, last_name 
+from customer
+inner join payment
+on payment.customer_id= customer.customer_id
+
