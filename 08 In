@@ -1,0 +1,17 @@
+# In
+
+we use in to check if value included in list of multiple options
+
+# ex-
+
+select color from table where color in ('red','blue', 'green')
+select color from table where color not in ('red', 'blue')
+
+select * from payment
+where amount in (0.99, 1.98, 1.99)
+
+select count(*) from payment
+where amount not in (0.99, 1.98, 1.99)
+
+select * from customer
+where first_name in ('ritik','John','Julie')
