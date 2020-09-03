@@ -1,0 +1,8 @@
+# Union
+
+it  is used to combine the result set of two or more select statements
+pasting of result together.
+
+select c1 from t1
+union 
+select c2 from t2
