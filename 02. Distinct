@@ -1,0 +1,23 @@
+# Select Distnict
+
+sometimes a table contain column with duplicate so if we want only unique/distinct values we use
+
+# distinct keyword
+it used to retuen only distinct values in a column
+
+# example
+
+ Select distinct(column) from table;
+ 
+ select distinct release_year from film;
+ 
+ select distinct(rental_rate) from film;
+ 
+ # Challenge
+ 
+ What ratings type do we have available?
+ 
+ # Ans
+ 
+ select distinct rating from film;
+ 
