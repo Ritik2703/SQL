@@ -1,0 +1,20 @@
+SQL provide a variety of aggregate functions.
+the main idea behind an aggregate function is to take multiple inputs and return a single output.
+
+link for more - https://www.postgresql.org/docs/current/functions-aggregate.html
+
+most common are-
+
+avg(), count(), max(), min(), sum(),round() etc.
+
+# example-
+
+select min(replacement_cost) from film;
+select max(replacement_cost) from film;
+select avg(replacement_cost) from film;
+select round(avg(replacement_cost),2) from film;
+select sum(replacement_cost) from film;
+select max(replacement_cost), min(replacement_cost) from film;
+
+
+
