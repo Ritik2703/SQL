@@ -1,0 +1,20 @@
+# AS
+it allows us to create an alias for a column or result.
+
+Syntax
+
+select sum(column) as new_name from table
+
+# example
+
+select amount as rental_price from payment;
+
+* The as operator gets executed at very end of query , we cant use alias inside where operator.
+
+select customer_id, sum(amount) as total_spent from payment
+group by customer_id
+
+select customer_id, sum(amount) as total_spent from payment
+group by customer_id
+having sum(amount) > 100
+
