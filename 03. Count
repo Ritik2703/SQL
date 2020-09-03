@@ -1,0 +1,19 @@
+# Count
+
+the count function returns the number of input rows that match a specific condition of a query.
+we can apply count on a specific column or just pass count(*)
+
+# example
+
+select count(name) from table;
+
+# count with distinct
+
+how many unique names are there in the table?
+
+select count(distinct name) from table;
+
+1. count no of rows in table
+2. select count unique values.
+
+select count(distinct amount) from payment;
