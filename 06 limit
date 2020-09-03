@@ -1,0 +1,17 @@
+# LIMIT
+
+it allows us to limit the no of rows returned for a query.
+useful to view top rows to see table layout
+ūśeful with combination with order by.
+it is last command to be executed.
+
+ex-
+
+select * from payment limit 3; // return top 3 rows
+
+select * from payment
+where amount != 0.00
+order by payment_date desc
+limit 5;
+
+
