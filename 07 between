@@ -1,0 +1,18 @@
+# BETWEEN
+
+it is used to match a value against range of values:  value between low and high.
+it is same as value>=low and value <= high
+
+# NOT BETWEEN
+ value not between high and low
+ same as value< low or value> high
+ 
+ we can use between to compare between dates also.
+ 
+ # ex-
+ 
+ select count(*) from payment
+ where amount between 8 and 9
+ 
+ select * from payment 
+ where payment_date between '2007-02-01' and '2007-02-15'
