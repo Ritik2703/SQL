@@ -1,0 +1,22 @@
+# OrderBY
+
+used to sort rows based on column value, in either ascending or descending order.
+
+# syntax-
+
+select c1,c2 from table orderby c1 asc/desc;
+
+asc - dedault order (ascending order)
+desc - descending order
+
+# we can also order by multiple columns
+* this make sense when one column has duplicate entries.
+
+Ex- select company,name,sales from table orderby company,sales;
+
+select * from customer order by first_name asc;
+select * from customer order by first_name desc;
+select * from customer order by store_id;
+
+select store_id,first_name, last_name from customer order by store_id,first_name desc;
+
