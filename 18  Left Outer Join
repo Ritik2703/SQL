@@ -1,0 +1,31 @@
+# It join results in set of records that are in left table, if no match with right , then table is null.
+
+select * from t1
+left outer join t2
+on t1.col = t2.col;
+
+# example
+
+select * from registerations
+left outer join logins
+on registerations.name =  logins.name
+
+
+
+select * from registerations
+left outer join logins
+on registerations.name =  logins.name
+where logins.log_id is null
+
+
+select film.film_id, film.title, inventory_id, store_id
+from film
+left join inventory on
+inventory.film_id= film.film_id
+
+
+select film.film_id, film.title, inventory_id, store_id
+from film
+left join inventory on
+inventory.film_id= film.film_id
+where inventory.film_id is null
