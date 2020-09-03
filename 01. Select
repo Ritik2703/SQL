@@ -1,0 +1,29 @@
+# Select
+it is the most common statement used, and it allows us to retrieve information from a table.
+it combine with other statement to perform complex queries.
+
+# Example-
+
+Select * from table_name;  // selects the all columns
+
+select column_name, c2 from table_name;
+
+*********************************************
+select * from actor;
+select first_name, last_name from actor;
+
+select *  from city;
+
+
+*********************************************
+
+# Challenge Task-
+
+situation - we want to send out a promotional email to our existing customers!
+
+hint - use select statement to grab the first and lastname of every customer and their email address.
+
+# Answer-
+
+select first_name, last_name, email from customer;
+
