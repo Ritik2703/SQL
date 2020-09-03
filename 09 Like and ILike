@@ -1,0 +1,59 @@
+# Like (use pattern matching)
+
+for ex- mails end with @gmail.com , name starting with a, etc.
+
+Like operator allows us to perform pattern matching against string data with use of wildcard characters:
+
+Percent %  - matches any sequence of characters
+
+Underscore _ - matches any single character.
+
+example
+
+all name starts with A , a
+
+where name like 'A%'
+
+where name like '%a'
+
+Note - Like is case sensitive and Ilike is case insensitive.
+
+# using underscrore allow us to replace just a single character 
+ex- get all mission Impossible film
+     where title like 'Mission Impossible _'
+     
+we can use multiple underscores
+
+ex- ritik23, ritik45
+where value like 'ritik_ _'
+
+ 
+can also use for more complex pattern like
+
+cheryl, theresa, sherri
+
+where name like '_her%'
+
+# Example
+
+select * from customer
+where first_name like 'J%'
+
+select * from customer
+where first_name ilike 'j%'
+
+select count(*) from customer
+where first_name ilike 'j%' and last_name like 'S%'
+
+select * from customer
+where first_name ilike '%er%'
+
+select * from customer
+where first_name ilike '_her%'
+
+select * from customer
+where first_name not like '_her%'
+
+select * from customer
+where first_name ilike 'a%' and last_name not ilike 'b%'
+order by last_name
