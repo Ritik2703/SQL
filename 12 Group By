@@ -1,0 +1,86 @@
+# Group BY
+
+It allows us to aggregate columns per some category.
+
+we need to choose a categorical column to GROUP BY.
+categorical columns  are non continous.
+
+ex- class 1, class2 , etc. (can still be numerical)
+
+# example 
+
+  select category_col, agg(data_col) from table 
+  group by category_col;
+
+  group by clause must appear right after a from or where statement..
+
+  select category_col, agg(data_col) from table 
+  where category_col !='A' 
+  group by category_col;
+  
+  
+  In the select statement, columns must either have an aggregate function or be in the group by call.
+  
+  select company, division, sum(sales) from finance_table
+  where division in ('marketing','transport')
+  group by company,division
+  
+  select company, sum(Sales) from finance_table
+  group by company
+  order by sum(sales)
+  limit 5
+  
+  
+  ***************************************************
+  
+  more examples
+  
+  select customer_id, sum(amount) from payment
+  group by customer_id
+  order by sum(amount)
+  
+select customer_id, count(amount) from payment
+group by customer_id
+order by count(amount)
+
+select customer_id, staff_id, sum(amount) from payment
+group by staff_id, customer_id
+order by customer_id
+
+select staff_id, customer_id,sum(amount) from payment
+group by staff_id, customer_id
+order by staff_id,customer_id
+
+select date(payment_date),sum(amount) from payment
+group by date(payment_date)
+order by sum(amount)
+
+***************************************
+
+
+# Challenge Question
+
+Q1 how many payment each staff member handle ?
+
+select staff_id, count(*)  from payment
+group by staff_id
+
+Q2  what is average replacement cost per mpaa rating?
+
+select * from film;
+select rating, round(avg(replacement_cost),2) from film
+group by rating
+order by avg(replacement_cost)
+
+Q3 what are customer id of top 5 customer by total spend?
+
+select customer_id, sum(amount) from payment
+group by customer_id
+order by sum(amount) desc
+limit 5
+
+
+  
+  
+  
+  
