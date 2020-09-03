@@ -1,0 +1,29 @@
+* there are few types of Outer Joins
+* they will allow us to specify how to deal with values only present in one of the tables being joined.
+
+# Full Outer Join
+
+Select * from t1
+full outer join t2
+on t1.col = t2.col;
+
+fill null in misclarifying values... fill everything
+
+select * from payment
+full outer join customer
+on payment.customer_id= customer.customer_id
+
+with where
+
+select * from t2
+full outer join t1
+on t1.col=t2.col
+where t1.id is null or t2.id is null
+
+
+select * from payment
+full outer join customer
+on payment.customer_id= customer.customer_id
+where customer.customer_id is null
+or payment.payment_id is null
+
