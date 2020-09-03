@@ -20,3 +20,22 @@ select * from customer order by store_id;
 
 select store_id,first_name, last_name from customer order by store_id,first_name desc;
 
+# Challenge
+
+Q1 what are the customer id of first 10 customers who do payment?
+
+select customer_id from payment
+order by payment_date 
+limit 10;
+
+Q2 titles of 5 shortest movies?
+
+select title,length from film
+order by length 
+limit 5;
+
+Q3 movie of length <=50
+
+select count(title) from film
+where length<=50;
+
