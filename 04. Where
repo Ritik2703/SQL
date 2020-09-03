@@ -1,0 +1,40 @@
+# Where 
+
+The Where statement allows us to to specify conditions on columns for the rows to be returned.
+
+# basic syntax-
+  
+  select c1,c2 from table where conditions;
+  
+  for comparing conditions we use comparision operators
+  
+  comparision operator -- =,>,<,>=,<=, <> or != 
+  logical operator - and, or , not
+  
+ # example
+ 
+ select name,choice from table where name= 'David' and choice='Red'
+ 
+ select count(title) from film
+where rental_rate>4 and replacement_cost>=19.99 and rating='R';
+
+# challenge-
+
+a customer forgot their wallet at our store! we need to track down their email and inform them so what is the email for customer with
+name Nancy thomas?
+
+select * from customer;
+select email from customer where first_name='Nancy' and last_name= 'Thomas';
+
+Q-2  find description of outlaw hanky
+
+
+select * from film;
+
+select description from film where title='Outlaw Hanky';
+
+ Q-3  phone of customer on addrss 259 ipoh
+ 
+ 
+select phone from address where address= '259 Ipoh Drive';
+ 
