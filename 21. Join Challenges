@@ -1,0 +1,16 @@
+Q1 We have to alert our customers through email about changes in tax in California
+  what are emails of customers live in California
+  
+select district, customer.email from customer
+inner join address
+on customer.address_id= address.address_id
+where address.district = 'California'
+
+Q2 List of movie of Nick Wahlberg
+
+select title, first_name, last_name from film_actor
+inner join actor
+on actor.actor_id= film_actor.actor_id
+inner join film
+on film_actor.film_id=film.film_id
+where first_name='Nick' and last_name = 'Wahlberg'
