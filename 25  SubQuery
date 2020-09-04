@@ -1,0 +1,21 @@
+# A sub query allows you to construct complex queries, essentailly performing a query on the results of another query.
+
+syntax is simple and include two select staetement.
+
+# standard query
+
+select avg(grade) from test_scores
+
+ex- select student, gradr from test_scores where grade > (select avg(grade) from test test_scores)
+
+select student, grade from test_scores where student in (select student from honor_roll_table)
+
+# Exists
+
+the exists operator is used to test for existence of rows in a subquery
+
+typically a subquery  is passed in the exists() function to check if any rows are returned with the subquery.
+
+select column_name from table_name
+where exists (select column_name from table_name where condition);
+
