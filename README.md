@@ -5,6 +5,7 @@
 # aggregate function - https://www.postgresql.org/docs/current/functions-aggregate.html
 # function formating - https://www.postgresql.org/docs/12/functions-formatting.html
 # mathematical functions -  https://www.postgresql.org/docs/current/functions-math.html
+# string functions - https://www.postgresql.org/docs/current/functions-string.html
 
 #   SQL Query for Retrieving Tables
 This query can be run to retrieve the list of tables present in a database where the database is “My_Schema”.
