@@ -1,0 +1,15 @@
+ttps://www.postgresql.org/docs/current/functions-string.html
+
+#ex-
+
+select length(first_name) from customer
+
+select (first_name ||' '|| last_name) as name from customer
+
+select (upper(first_name) ||' '|| last_name) as name from customer
+
+select first_name || last_name || '@gmail.com' from customer
+
+select lower(left(first_name,1)) || lower(last_name) || '@gmail.com' as customer_email from customer
+
+see documentation for more
