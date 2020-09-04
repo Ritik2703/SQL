@@ -1,0 +1,5 @@
+# https://www.postgresql.org/docs/current/functions-math.html
+
+select round(rental_rate/replacement_cost,2)*100 from film
+
+select 0.1 * replacement_cost as deposit from film
