@@ -1,0 +1,64 @@
+commands that report back time and date information.
+
+Time = contains only time
+
+Date= contains only date
+
+Timestamp =  contains date and time
+
+Timestampz = contains date, time and timezone
+
+timezone, now, timeofday, current_time, current_date
+
+#ex-
+
+show all
+show timezone
+
+select now()-  timestamp with time zone
+
+select timeofday() - today day time
+
+select current_date
+
+
+*************************************************
+# Extract()
+
+-- allows you to extract or obtain a sub component of a date value
+
+year, month, day, week, quarter
+
+extract(year from date_col)
+
+# Age() - calculate and returns the current age given a timestamp
+
+age(date_col)
+
+# To_char()- convert date types to text
+
+to_char(date_col,'mm-dd-yyyy')
+
+*************************************************
+
+select extract(year from payment_date) as my_year from payment
+
+select extract(month from payment_date) as pay_month from payment
+
+select age(payment_date) from payment
+
+select to_char(payment_date,'mm-yy') from payment
+
+
+*************************************************
+
+# Challenge tasks-
+
+Q1 which months did payment occur?
+
+select distinct(to_char(payment_date,'month')) from payment;
+
+Q2 How many payments occure on  monday?
+
+select count(*) from payment where extract(dow from payment_date)=1
+
