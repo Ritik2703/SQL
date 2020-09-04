@@ -3,6 +3,7 @@
 # RAdhe Radhe
 # pattern matching (like) - https://www.postgresql.org/docs/12/functions-matching.html
 # aggregate function - https://www.postgresql.org/docs/current/functions-aggregate.html
+# function formating - https://www.postgresql.org/docs/12/functions-formatting.html
 #   SQL Query for Retrieving Tables
 This query can be run to retrieve the list of tables present in a database where the database is “My_Schema”.
 
