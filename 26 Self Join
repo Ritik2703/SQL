@@ -1,0 +1,23 @@
+# A self Join is a query in which a table is joined to itself
+# Self-joins are useful for comparing values in a column of rows within the same table.
+
+it creates two copies of same table and perform join operation
+use alias during self join
+
+syntax-
+
+select tablea.col, tableb.col
+from table as tablea
+join table as tableb on
+tablea.some_col = tableb.other_col
+
+select title,length from film
+where length=117
+
+select f1.title, f2.title, f1.length
+from film as f1
+inner join film as f2 on
+f1.film_ID != f2.film_id
+and f1.length= f2.length
+
+
