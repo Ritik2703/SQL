@@ -1,0 +1,22 @@
+# insert allows us to add rows to a table
+
+syntax
+
+insert into table(c1,c2,....)
+select c1,c2
+from another_table
+where condition;
+
+insert into account(user_name,password,email, created_on)
+values
+('Ritik','passw','ritik@mail.com',current_timestamp)
+
+insert into job(job_name)
+values
+('bhkti')
+
+insert into account_job(user_id, job_id, hire_data)
+values
+(1,1, current_timestamp)
+
+
