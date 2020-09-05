@@ -1,6 +1,8 @@
 # SQL
 # Hare Krishna 
 # RAdhe Radhe
+
+# Data type - https://www.postgresql.org/docs/current/datatype.html
 # pattern matching (like) - https://www.postgresql.org/docs/12/functions-matching.html
 # aggregate function - https://www.postgresql.org/docs/current/functions-aggregate.html
 # function formating - https://www.postgresql.org/docs/12/functions-formatting.html
