@@ -1,0 +1,23 @@
+# The Check constraint allows us to create more customized constraints that adhere to a certain condition.
+such as making sure all inserted integer values fall below a certain threshold.
+
+Create table example(
+ ex_id serial primary key,
+ age smallint check (age > 21),
+ parent_age smallint check(
+ parent_age > age)
+ );
+ Create table employees(
+ emp_id serial primary key,
+ first_name varchar(50) not null,
+ last_name varchar(50) not null,
+  birthdate date check (birthday> '1900-01-01'),
+	hire_date date check (hire_date > birthdate),
+	salary integer check (salary > 100)
+)
+
+ insert into employees(first_name,last_name,
+					 birthdate, hire_date,
+					 salary)
+values
+('ritik','dagar','2000-01-27','2018-02-03',1000)
