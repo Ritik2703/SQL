@@ -1,0 +1,22 @@
+# delete
+
+we can use the delete clause to remove rows from a table
+
+for ex-
+
+delete from table where row_id=1
+
+we can delete rows based on their presence in other tables.
+
+delete from tablea
+using tableb
+where tablea.id= tableb.id
+
+
+delete from table //delete all rows from table
+
+we can also return using delete like update
+
+delete from job 
+where job_name= 'cow_boy'
+returning job_id, job_name
