@@ -1,0 +1,16 @@
+# Primary key-
+It is a column or a group od column to identify a row uniquely in table.
+
+for ex - customer_id in customer table
+
+# Foreign key-
+
+It is a field or group of fileds in a table that uniquely identifies a row in another table.
+It is defined in a table that references to the primary key of other table
+
+
+table with foreign key is referencing table or child table.
+table to which foreign key references is parent table.
+a table can have multiple foreign keys depending upon its relation with other tables.
+
+
