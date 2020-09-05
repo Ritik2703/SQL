@@ -1,0 +1,33 @@
+# the update value allows us to chnage value of columns in a table.
+
+syntax
+
+update table
+set col1= val,
+    col2= val2,...
+    where 
+    condition;
+    
+update account
+set last_login= current_timestamp
+where last_login is null;
+     
+     
+# using another table value (update join)
+
+update tablea
+set orriginal_col= tableb.new_col
+from tableb
+where tablea.id = tableb.id
+
+
+update account_job
+set hire_data = account.created_on
+from account
+returning account_job.user_id
+
+# return affected rows
+
+update account
+set Last_login = created_on
+returning account_id,last_login
