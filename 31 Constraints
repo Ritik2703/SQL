@@ -1,0 +1,19 @@
+Rules enforced on data columns on table
+these are used to prevent invalid data from being entered into database.
+this ensures accuracy and reliability of data in database.
+
+Column constraint
+table constraint
+
+not null constraint
+unique constaint
+primary key
+foreign key
+check constraint - ensure all value satisfy certain condition
+exclusion constraint
+check(condition)
+references
+
+
+
+
