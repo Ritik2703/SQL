@@ -1,0 +1,38 @@
+# Alter -
+
+The Alter Clause allows for changes to an existing table structure
+
+  adding, dropping, or renaming columns
+  changing a column's data type
+  set default values for column
+  add check constraint
+  rename table
+  
+  
+  alter table table_name
+  add column new_col type
+  
+  alter table table_name
+  alter column col_name
+  set not null
+  
+  
+  create table information(
+  info_id serial primary_key,
+  title varchar(500) not null,
+  person varchar(50) not null unique
+  );
+  
+  alter table information rename to new_info;
+  
+  alter table new_info
+  rename column person to people
+  
+  
+  insert into new_info(title)  //error
+values
+('some new title')
+
+alter table new_info
+alter column people drop not null
+
