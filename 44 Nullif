@@ -1,0 +1,21 @@
+passed 2 arguments
+
+return null if both are equal else returns first argument
+
+#ex-
+
+create table dept;
+
+
+select (
+sum(case when department='cse' then 1 else 0 end)/
+	sum(case when department='head' then 1 else 0 end)
+) as department_ratio
+from depts
+
+select (
+sum(case when department='head' then 1 else 0 end)/
+	nullif(sum(case when department='cse' then 1 else 0 end),0)
+) as department_ratio
+from depts
+
