@@ -1,0 +1,12 @@
+how to import .csv file to an existing table?
+
+file should be compatible with sql
+you must provide 100% correct file path
+
+import command doesnt create table for us
+it assumes a table is already created.
+
+
+https://www.postgresql.org/docs/12/sql-copy.html
+
+https://www.enterprisedb.com/postgres-tutorials/how-import-and-export-data-using-csv-files-postgresql
