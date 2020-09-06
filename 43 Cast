@@ -1,0 +1,21 @@
+It allows us to convert one data type into another.
+
+Type convert should be reasonable.
+
+select cast('5' as integer)
+
+select '5':: Integer
+
+select cast(date as timestamp) from table
+
+example-
+
+select char_length(cast(inventory_id as varchar)) from rental
+
+ 
+
+
+
+
+
+ 
