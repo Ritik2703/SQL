@@ -1,0 +1,25 @@
+during project we have combination of tables and conditions
+instead of trying same query again and again we can create view to quickly see the query with simple call.
+
+
+a view is a database object that stored query.
+it is virtual table
+it doesn't store data physically but stores query.
+
+we can also update and alter existing views
+
+create view customer_info as
+select first_name,last_name,address from customer
+inner join address
+on customer.address_id = address.address_id
+
+select * from customer_info
+
+create or replace view customer_info as 
+select first_name,last_name,address,district from customer
+inner join address
+on customer.address_id = address.address_id
+
+alter view customer_info rename to c_info
+
+drop view c_info
