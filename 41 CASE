@@ -1,0 +1,88 @@
+we can use case statement to only execute sql code when certain conditions are met.
+this is very similar to if/else statements in other programming languages.
+
+syntax-
+
+CASE
+   when condition1 then result1
+   when condition2 then result2
+   else some_other_result
+END
+
+ex-
+
+select a,
+case when a=1 then 'one'
+     when a=2 then 'two'
+  else 'other'
+  end
+  from test;
+  
+ 
+select customer_id,
+case
+    when (customer_id<=100) then 'premium'
+	when (customer_id between 100 and 200) then 'plus'
+	else 'normal'
+end
+from customer
+
+
+select customer_id,
+case customer_id
+    when 1 then 'premium'
+	when 2 then 'plus'
+	else 'normal'
+end as results
+from customer
+
+select rental_rate,
+sum(case rental_rate
+     when 0.99 then 1
+	 else 0
+end) as bargains,
+sum(case rental_rate
+     when 2.99 then 1
+	 else 0
+end) as regular
+from film
+group by rental_rate
+
+
+select rental_rate,
+sum(case rental_rate
+     when 0.99 then 1
+	 else 0
+end) as bargains,
+sum(case rental_rate
+     when 2.99 then 1
+	 else 0
+end) as regular,
+sum(case rental_rate
+     when 4.99 then 1
+	 else 0
+end) as premium
+from film
+group by rental_rate
+
+# Challenge task-
+various amounts of films per movie rating
+
+
+select rating,
+sum(case rating
+ when 'R' then 1
+ else 0
+ end) as r,
+ sum(case rating 
+ when 'PG' then 1
+ else 0
+ end) as pg,
+ sum(case rating
+ when 'PG-13' then 1
+ else 0
+ end) as pg13
+ from film
+ group by rating
+ 
+
