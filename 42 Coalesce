@@ -1,0 +1,15 @@
+# It accepts unlimited no of arguments, it returns first argument that is not null.
+-> coalesce (arg1, arg2, ...., arg_n)
+
+ex-
+ select coalesce(1,2)  _>1
+ select coalesce(null,2,3) -> 2
+ 
+ 
+ ex-
+ 
+ select item, (price - coalesce(discount, 0)) as final from table
+ 
+ 
+ 
+ 
