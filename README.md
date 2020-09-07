@@ -290,3 +290,308 @@ cheryl, theresa, sherri
 
 ----------------------------------------------------------------------------------------------------------
 
+# 10. Aggregation Functions - https://www.postgresqltutorial.com/postgresql-aggregate-functions/
+
+SQL provide a variety of aggregate functions.
+the main idea behind an aggregate function is to take multiple inputs and return a single output.
+
+link for more - https://www.postgresql.org/docs/current/functions-aggregate.html
+
+most common are-
+
+avg(), count(), max(), min(), sum(),round() etc.
+
+# example-
+
+       select min(replacement_cost) from film;
+       select max(replacement_cost) from film;
+       select avg(replacement_cost) from film;
+       select round(avg(replacement_cost),2) from film;
+       select sum(replacement_cost) from film;
+       select max(replacement_cost), min(replacement_cost) from film;
+       
+ ------------------------------------------------------------------------------------------------------------
+ 
+# 11. GroupBY - https://www.postgresqltutorial.com/postgresql-group-by/
+
+It allows us to aggregate columns per some category.
+
+we need to choose a categorical column to GROUP BY.
+categorical columns  are non continous.
+
+ex- class 1, class2 , etc. (can still be numerical)
+
+# example 
+
+      select category_col, agg(data_col) from table 
+      group by category_col;
+
+  group by clause must appear right after a from or where statement..
+
+       select category_col, agg(data_col) from table 
+       where category_col !='A' 
+       group by category_col;
+  
+  
+  In the select statement, columns must either have an aggregate function or be in the group by call.
+  
+    select company, division, sum(sales) from finance_table
+    where division in ('marketing','transport')
+    group by company,division
+  
+    select company, sum(Sales) from finance_table
+    group by company
+    order by sum(sales)
+    limit 5
+  
+  
+  ***************************************************
+  
+  more examples
+  
+  select customer_id, sum(amount) from payment
+  group by customer_id
+  order by sum(amount)
+  
+select customer_id, count(amount) from payment
+group by customer_id
+order by count(amount)
+
+select customer_id, staff_id, sum(amount) from payment
+group by staff_id, customer_id
+order by customer_id
+
+select staff_id, customer_id,sum(amount) from payment
+group by staff_id, customer_id
+order by staff_id,customer_id
+
+select date(payment_date),sum(amount) from payment
+group by date(payment_date)
+order by sum(amount)
+
+***************************************
+
+
+# Challenge Question
+
+Q1 how many payment each staff member handle ?
+
+              select staff_id, count(*)  from payment
+              group by staff_id
+
+Q2  what is average replacement cost per mpaa rating?
+
+    select * from film;
+    select rating, round(avg(replacement_cost),2) from film
+    group by rating
+    order by avg(replacement_cost)
+
+Q3 what are customer id of top 5 customer by total spend?
+
+           select customer_id, sum(amount) from payment
+           group by customer_id
+           order by sum(amount) desc
+           limit 5
+
+--------------------------------------------------------------------------------------------------------------------
+ 
+ # 12. Having - https://www.postgresqltutorial.com/postgresql-having/
+ 
+ It allows us to filter after an aggregation has alreday taken place.
+
+select company, sum(sales)
+from finance
+where company != 'Google'
+group by company
+
+we have already seen we can filter before executing the group by, but what if we want to filter based on sum(sales)
+
+we can't use where to filter based off of aggregate results, because those happen after a where is executed
+
+Solution is having
+
+having allows us to use the aggregate result as a filter along with a group by
+
+example
+
+       select company, sum(sales)
+       from finance
+       where company != 'Google'
+       group by company
+       having sum(sales) >  1000
+
+
+       select customer_id, sum(amount) from payment
+       group by customer_id
+       having sum(amount) > 100
+
+       select store_id, count(*) from customer
+       group by store_id
+       having count(*) > 300
+
+
+************************************
+
+# Challenge
+
+Q1 customer having 40 or more transaction got platinum .. what customer_ids are eligible?
+
+        select customer_id, count(amount) from payment
+        group by customer_id
+        having count(amount) >= 40;
+
+
+Q2 customer ids of cust who have spent more than $100 in payment transactions with our staff_id member 2?
+
+         select customer_id, sum(amount) from payment
+         where staff_id = 2
+         group by customer_id
+         having sum(amount)> 100 
+
+----------------------------------------------------------------------------------------------------------------- 
+ 
+# 13.  AS - https://www.postgresqltutorial.com/postgresql-alias/
+
+it allows us to create an alias for a column or result.
+
+Syntax
+
+    select sum(column) as new_name from table
+
+# example
+
+select amount as rental_price from payment;
+
+* The as operator gets executed at very end of query , we cant use alias inside where operator.
+
+        select customer_id, sum(amount) as total_spent from payment
+        group by customer_id
+
+       select customer_id, sum(amount) as total_spent from payment
+       group by customer_id
+       having sum(amount) > 100
+
+-----------------------------------------------------------------------------------------------------------------
+
+# JOINS - https://www.postgresqltutorial.com/postgresql-joins/
+
+----------------------------------------------------------------------------------------------------------------
+# 14. Inner Join - https://www.postgresqltutorial.com/postgresql-inner-join/
+
+Join allows us to combine multiple tables together
+
+
+# an inner join will reslt with the set of records that match in both tables.
+
+Syntax
+
+select * from tableA
+inner join tableB
+on tableA.col_match = tableB.col_match
+
+simple join also means inner join
+
+in inner join table order won't matter.
+
+# Example-
+
+        select * from payment
+        inner join customer
+        on payment.customer_id= customer.customer_id
+
+        select payment_id, payment.customer_id, first_name, last_name 
+        from customer
+        inner join payment
+        on payment.customer_id= customer.customer_id
+
+----------------------------------------------------------------------------------------------------
+
+# 15.  Full Outer JOin  -  https://www.postgresqltutorial.com/postgresql-full-outer-join/
+
+* there are few types of Outer Joins
+* they will allow us to specify how to deal with values only present in one of the tables being joined.
+
+## Full Outer Join
+
+Select * from t1
+full outer join t2
+on t1.col = t2.col;
+
+fill null in misclarifying values... fill everything
+
+         select * from payment
+         full outer join customer
+         on payment.customer_id= customer.customer_id
+
+with where
+
+         select * from t2
+         full outer join t1
+         on t1.col=t2.col
+         where t1.id is null or t2.id is null
+
+
+         select * from payment
+         full outer join customer
+         on payment.customer_id= customer.customer_id
+         where customer.customer_id is null
+         or payment.payment_id is null
+
+---------------------------------------------------------------------------------------------------------------------
+
+# 16. Left Outer Join - https://www.postgresqltutorial.com/postgresql-left-join/
+
+ It join results in set of records that are in left table, if no match with right , then table is null.
+
+select * from t1
+left outer join t2
+on t1.col = t2.col;
+
+# example
+
+     select * from registerations 
+     left outer join logins
+     on registerations.name =  logins.name
+
+     select * from registerations
+     left outer join logins
+     on registerations.name =  logins.name
+     where logins.log_id is null
+
+
+     select film.film_id, film.title, inventory_id, store_id
+     from film
+     left join inventory on
+     inventory.film_id= film.film_id
+
+
+     select film.film_id, film.title, inventory_id, store_id
+     from film
+     left join inventory on
+     inventory.film_id= film.film_id
+     where inventory.film_id is null
+   
+------------------------------------------------------------------------------------------------------------------
+
+# 17. Right Outer JOin -  https://www.postgresqltutorial.com/postgresql-right-join/
+
+ Right Join is same as left Join
+ 
+ It join results in set of records that are in right table, if no match with left , then table is null.
+
+       select * from t1
+       right outer join t2
+       on t1.col= t2.col
+
+
+       select * from t1
+       right outer join t2
+       on t1.col= t2.col
+       where t1.id is null
+
+       select film.film_id, film.title, inventory_id, store_id
+       from film
+       right join inventory on
+       inventory.film_id= film.film_id
+
+---------------------------------------------------------------------------------------------------------------------
