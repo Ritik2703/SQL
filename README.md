@@ -166,3 +166,127 @@ Q3 movie of length <=50
      where length<=50;
 
 ----------------------------------------------------------------------------------------------------------
+
+# 6. LIMIT - https://www.postgresqltutorial.com/postgresql-limit/
+
+it allows us to limit the no of rows returned for a query.
+useful to view top rows to see table layout
+ūśeful with combination with order by.
+it is last command to be executed.
+
+ex-
+
+     select * from payment limit 3; // return top 3 rows
+
+     select * from payment
+     where amount != 0.00
+     order by payment_date desc
+     limit 5;
+   
+--------------------------------------------------------------------------------------------------------------
+
+# 7. BETWEEN - https://www.postgresqltutorial.com/postgresql-between/
+
+it is used to match a value against range of values:  value between low and high.
+it is same as value>=low and value <= high
+
+# NOT BETWEEN
+ value not between high and low
+ same as value< low or value> high
+ 
+ we can use between to compare between dates also.
+ 
+ # ex-
+ 
+         select count(*) from payment
+         where amount between 8 and 9
+ 
+         select * from payment 
+         where payment_date between '2007-02-01' and '2007-02-15'
+ 
+ ------------------------------------------------------------------------------------------------------------
+ 
+ # 8. IN - https://www.postgresqltutorial.com/postgresql-in/
+ 
+ we use in to check if value included in list of multiple options
+
+# ex-
+
+     select color from table where color in ('red','blue', 'green')
+     select color from table where color not in ('red', 'blue')
+
+     select * from payment
+     where amount in (0.99, 1.98, 1.99)
+
+     select count(*) from payment
+     where amount not in (0.99, 1.98, 1.99)
+
+     select * from customer
+     where first_name in ('ritik','John','Julie')
+
+-------------------------------------------------------------------------------------------------------------
+
+# 9. Like (use for pattern matching) - https://www.postgresqltutorial.com/postgresql-like/
+
+for ex- mails end with @gmail.com , name starting with a, etc.
+
+Like operator allows us to perform pattern matching against string data with use of wildcard characters:
+
+Percent %  - matches any sequence of characters
+
+Underscore _ - matches any single character.
+
+example
+
+all name starts with A , a
+
+    where name like 'A%'
+    where name like 'a%'
+
+    where name alike '%a'
+
+# Note - Like is case sensitive and Ilike is case insensitive.
+
+# using underscrore allow us to replace just a single character 
+ex- get all mission Impossible film
+
+     where title like 'Mission Impossible _'
+     
+we can use multiple underscores
+
+ex- ritik23, ritik45
+       where value like 'ritik_ _'
+
+ 
+can also use for more complex pattern like
+
+cheryl, theresa, sherri
+
+     where name like '_her%'
+
+# Example
+
+               select * from customer
+               where first_name like 'J%'
+
+               select * from customer
+               where first_name ilike 'j%'
+
+               select count(*) from customer
+               where first_name ilike 'j%' and last_name like 'S%'
+
+               select * from customer
+               where first_name ilike '%er%'
+
+              select * from customer
+              where first_name ilike '_her%'
+
+              select * from customer
+              where first_name not like '_her%'
+
+              select * from customer
+              where first_name ilike 'a%' and last_name not ilike 'b%'
+              order by last_name
+
+----------------------------------------------------------------------------------------------------------
+
