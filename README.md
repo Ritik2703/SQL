@@ -9,6 +9,80 @@
 # mathematical functions -  https://www.postgresql.org/docs/current/functions-math.html
 # string functions - https://www.postgresql.org/docs/current/functions-string.html
 
+-----------------------------------------------------------------------------------------------
+# 1. Select
+it is the most common statement used, and it allows us to retrieve information from a table.
+it combine with other statement to perform complex queries.
+
+# Example-
+
+      Select * from table_name;  // selects the all columns
+
+      select column_name, c2 from table_name;
+
+      select * from actor;
+      select first_name, last_name from actor;
+
+      select *  from city;
+
+
+# Challenge Task-
+
+situation - we want to send out a promotional email to our existing customers!
+
+hint - use select statement to grab the first and lastname of every customer and their email address.
+
+# Answer-
+
+      select first_name, last_name, email from customer;
+
+-----------------------------------------------------------------------------------------------
+# 2. Distnict
+
+sometimes a table contain column with duplicate so if we want only unique/distinct values we use distinct
+
+# distinct keyword
+it used to retuen only distinct values in a column
+
+# example
+
+      Select distinct(column) from table;
+ 
+      select distinct release_year from film;
+ 
+      select distinct(rental_rate) from film;
+ 
+ # Challenge
+ 
+ What ratings type do we have available?
+ 
+ # Ans
+ 
+     select distinct rating from film;
+ 
+ ---------------------------------------------------------------------------------------------
+
+# 3. Count
+
+the count function returns the number of input rows that match a specific condition of a query.
+we can apply count on a specific column or just pass count(*)
+
+# example
+
+      select count(name) from table;
+
+# count with distinct
+
+how many unique names are there in the table?
+
+     select count(distinct name) from table;
+
+1. count no of rows in table
+2. select count unique values.
+
+       select count(distinct amount) from payment;
+
+----------------------------------------------------------------------------------------------
 #   SQL Query for Retrieving Tables
 This query can be run to retrieve the list of tables present in a database where the database is “My_Schema”.
 
