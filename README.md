@@ -596,3 +596,19 @@ on t1.col = t2.col;
        inventory.film_id= film.film_id
 
 ---------------------------------------------------------------------------------------------------------------------
+
+# 18. Union - https://www.postgresqltutorial.com/postgresql-union/
+
+  
+# Union
+
+it  is used to combine the result set of two or more select statements
+pasting of result together.
+
+'''
+select c1 from t1
+union 
+select c2 from t2
+'''
+----------------------------------------------------------------------------------------------------------------------
+
