@@ -10,8 +10,7 @@
 # mathematical functions -  https://www.postgresql.org/docs/current/functions-math.html
 # string functions - https://www.postgresql.org/docs/current/functions-string.html
 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](https://sp.postgresqltutorial.com/wp-content/uploads/2020/07/PostgreSQL-Having-1.png )
+[Alt Text](https://sp.postgresqltutorial.com/wp-content/uploads/2020/07/PostgreSQL-Having-1.png )
 -----------------------------------------------------------------------------------------------
 # 1. Select -https://www.postgresqltutorial.com/postgresql-select/
 it is the most common statement used, and it allows us to retrieve information from a table.
